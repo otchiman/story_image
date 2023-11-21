@@ -17,10 +17,12 @@ import requests
 load_dotenv() # take environment variables from .env.
 
 def get_astica_key():
-    return os.getenv("ASTICA_API_KEY")
+    #return os.getenv("ASTICA_API_KEY")
+    return st.secrets["ASTICA_API_KEY"]
 
 def get_openai_key():
-    return os.getenv("OPENAI_API_KEY")
+    #return os.getenv("OPENAI_API_KEY")
+    return st.secrets["OPENAI_API_KEY"]
 
 # Modified function to handle in-memory files
 def get_image_base64_encoding(in_memory_file, file_name):
@@ -168,6 +170,7 @@ def generate_narrative(captions_list):
 
     
 def main():
+    st. set_page_config(layout="wide")
     caption_list = []
     st.title("Tell a Story with Images🌁")
     with st.sidebar:
