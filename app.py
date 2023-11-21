@@ -210,7 +210,7 @@ def main():
 
             bundle_filename = bundle_narrative_and_images(narrative, uploaded_files)
             with open(bundle_filename, "rb") as file:
-                st.download_button("Download Bundle", data=file, file_name=bundle_filename, mime="application/zip", on_click=st.balloons)
+                st.download_button("Download Images+Narrative", data=file, file_name=bundle_filename, mime="application/zip", on_click=st.balloons)
 
     elif upload_option == 'Upload a ZIP file':
         zip_file = st.file_uploader("Upload a ZIP file containing images", type='zip')
@@ -235,7 +235,7 @@ def main():
                 st.markdown(narrative)
             bundle_filename = bundle_narrative_and_images(narrative, images_from_zip)
             with open(bundle_filename, "rb") as file:
-                st.download_button("Download Bundle", data=file, file_name=bundle_filename, mime="application/zip", on_click=st.balloons())
+                st.download_button("Download Images+Narrative", data=file, file_name=bundle_filename, mime="application/zip", on_click=st.balloons)
 
 
 # Run the app
