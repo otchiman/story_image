@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "media-tagging"
+version = "0.1.0"
+description = "Image Tagging and Story Generation using Astica AI"
+authors = ["Caleb Otchi <calebedem@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+streamlit = "^1.28.2"
+python-dotenv = "^1.0.0"
+requests = "^2.31.0"
+openai = "^1.3.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
