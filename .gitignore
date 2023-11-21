@@ -19,3 +19,4 @@ env/
 lib/
 libs/
 node_modules/
+.env
