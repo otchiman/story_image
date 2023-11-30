@@ -38,7 +38,7 @@ def generate_caption(base64_string):
 
     # API configurations
     asticaAPI_key = os.getenv("ASTICA_API_KEY") # visit https://astica.ai
-    asticaAPI_timeout = 300 # in seconds. "gpt" or "gpt_detailed" require increased timeouts
+    asticaAPI_timeout = 1000 # in seconds. "gpt" or "gpt_detailed" require increased timeouts
     asticaAPI_endpoint = 'https://vision.astica.ai/describe'
     asticaAPI_modelVersion = '2.1_full' # '1.0_full', '2.0_full', or '2.1_full'
 
