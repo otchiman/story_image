@@ -3,7 +3,7 @@ import io
 import json
 import base64
 import os
-import shutil
+
 
 import streamlit as st
 from PIL import Image
@@ -14,7 +14,6 @@ from openai import OpenAI
 import requests
 
 
-load_dotenv() # take environment variables from .env.
 
 def get_astica_key():
     #return os.getenv("ASTICA_API_KEY")
@@ -133,13 +132,18 @@ def generate_narrative(captions_list):
     )
 
     
-
     primer=f"""
-    Memories are cherished by all humans. It is what drives people. 
-    In this context you are memorable narrative teller. Given pieces of 
-    captions that describe images and narratives that describe them. Merge the 
-    captions and narratives to create a memorable story using the only the context
-    given. Your response should only return the narrative, no extra descriptive text. 
+        Memories are cherished by all humans. It is what drives people. 
+        In this context you are memorable narrative teller. Given pieces of 
+        captions that describe images and narratives that describe them. Here is what to do:
+
+            1. Merge the captions and narratives to create a memorable story using the only the context
+        given. 
+            2. Your response should only return the narrative, no captioning or headers
+        should be returned.
+            3. The narrative should capture all elements identified in the images. 
+            4. Stories must be complete and coherent.
+            5. Narratives should be at most 1000 words long.
     """
 
     # Combine captions into a single text
@@ -161,7 +165,7 @@ def generate_narrative(captions_list):
             {"role": "user", "content": combined_captions}, 
         ],
         temperature=0.0,
-        max_tokens=200,
+        max_tokens=2000,
     )
             
 
@@ -216,6 +220,9 @@ def main():
         zip_file = st.file_uploader("Upload a ZIP file containing images", type='zip')
         if zip_file:
             images_from_zip = save_images_from_zip(zip_file)
+            st.divider()
+            st.success(f"Extracted {len(images_from_zip)} Images from ZIP File!")
+            st.divider()
             for image, base64_string in images_from_zip:
                 caption = generate_caption(base64_string)
                 try:
@@ -224,8 +231,7 @@ def main():
                 except:
                     #throw error
                     st.error(caption)
-            st.divider()
-            st.success(f"Extracted {len(images_from_zip)} Images from ZIP File!")
+            
             st.divider()
 
             st.subheader("Here is your Story📖:", divider='rainbow')
